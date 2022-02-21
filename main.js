@@ -48,13 +48,11 @@ camera.position.z=300;
 light.position.set(-100,-50,100);
 light2.position.set(100,-50,100);
 
-//object1.add(object2,object3,object4);
-object1.rotation.x=-Math.PI/2;
-object2.rotation.x=Math.PI/2;
-object3.rotation.y=Math.PI;
-object3.rotation.x=Math.PI/2;
-object4.rotation.y=Math.PI/2;
-object4.rotation.x=Math.PI/2;
+object1.add(object2,object3,object4);
+object1.rotation.x=Math.PI/2;
+object2.rotation.y=-Math.PI/2;
+object3.rotation.y=Math.PI/2;
+object4.rotation.y=Math.PI;
 
 const handleResize = () =>{
     const {innerWidth, innerHeight} = window;
@@ -103,7 +101,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 renderer.domElement.addEventListener( 'mousedown', onCanvasMouseDown, false);
 
 const loop = () =>{
-    //requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
     render();
 }
 loop();
