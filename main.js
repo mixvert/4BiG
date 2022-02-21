@@ -13,19 +13,19 @@ document.body.appendChild( renderer.domElement);
 
 const sphere = new THREE.SphereGeometry(15, 20, 20, phiStart=0, phiLenght=Math.PI/2);
 const material1 = new THREE.MeshPhongMaterial({
-    color:new THREE.Color('rgb(255,0,0)'),
+    color:new THREE.Color('hsl(0,100%,50%)'),
     shininess:50,
 });
 const material2 = new THREE.MeshPhongMaterial({
-    color:new THREE.Color('rgb(0,255,0)'),
+    color:new THREE.Color('hsl(115,100%,50%)'),
     shininess:50,
 });
 const material3 = new THREE.MeshPhongMaterial({
-    color:new THREE.Color('rgb(0,0,255)'),
+    color:new THREE.Color('hsl(235,100%,50%)'),
     shininess:50,
 });
 const material4 = new THREE.MeshPhongMaterial({
-    color:new THREE.Color('rgb(255,0,255)'),
+    color:new THREE.Color('hsl(265,100%,50%)'),
     shininess:50,
 });
 
@@ -66,11 +66,46 @@ function onDocumentMouseMove( event ) {
   event.preventDefault();
 
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1; 
-  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1; 
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+  raycaster.setFromCamera( mouse, camera );
+  selected = raycaster.intersectObjects( scene.children );
+
+  if(selected.length==0){
+    object1.material.color.setHSL(0,1,.5);
+    object2.material.color.setHSL(.32,1,.5);
+    object3.material.color.setHSL(.65,1,.5);
+    object4.material.color.setHSL(.74,1,.5);
+  }
+  else {
+    if(selected[0].object.name == "purple"){
+        object4.material.color.setHSL(.74,1,.75);
+        object1.material.color.setHSL(0,1,.5);
+        object2.material.color.setHSL(.32,1,.5);
+        object3.material.color.setHSL(.65,1,.5);
+    }
+    else if(selected[0].object.name == "red"){
+        object1.material.color.setHSL(0,1,.75);
+        object2.material.color.setHSL(.32,1,.5);
+        object3.material.color.setHSL(.65,1,.5);
+        object4.material.color.setHSL(.74,1,.5);
+    }
+    else if(selected[0].object.name == "green"){
+        object2.material.color.setHSL(.32,1,.75);
+        object1.material.color.setHSL(0,1,.5);
+        object3.material.color.setHSL(.65,1,.5);
+        object4.material.color.setHSL(.74,1,.5);
+    }
+    else if(selected[0].object.name == "blue"){
+        object3.material.color.setHSL(.65,1,.75);
+        object1.material.color.setHSL(0,1,.5);
+        object2.material.color.setHSL(.32,1,.5);
+        object4.material.color.setHSL(.74,1,.5);
+    }
+  }
 } 
 
 function onCanvasMouseDown( event ){
-    render();
     
     if(selected.length > 0){
         if(selected[0].object.name == "purple"){
@@ -88,11 +123,7 @@ function onCanvasMouseDown( event ){
     }
 }
 
-function render() {
-    raycaster.setFromCamera( mouse, camera );
-
-    selected = raycaster.intersectObjects( scene.children );
-    
+function render() { 
     renderer.render( scene, camera );
 }
 
@@ -100,7 +131,9 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 renderer.domElement.addEventListener( 'mousedown', onCanvasMouseDown, false);
 
 const loop = () =>{
-    //requestAnimationFrame(loop);
+    // object1.rotation.z+=0.01;
+    // object1.rotation.x+=0.03;
+    requestAnimationFrame(loop);
     render();
 }
 loop();
