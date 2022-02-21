@@ -36,11 +36,12 @@ const object4 = new THREE.Mesh(sphere,material4);
 const light = new THREE.PointLight(new THREE.Color('rgb(255,255,255)'),.7);
 const light2 = new THREE.PointLight(new THREE.Color('rgb(255,255,255)'),.5);
 
-var objects = [object1, object2, object3, object4];
-scene.add(object1);
-scene.add(object2);
-scene.add(object3);
-scene.add(object4);
+object1.name="red";
+object2.name="green";
+object3.name="blue";
+object4.name="purple";
+
+scene.add(object1, object2, object3, object4);
 scene.add(light);
 scene.add(light2);
 
@@ -72,16 +73,16 @@ function onCanvasMouseDown( event ){
     render();
     
     if(selected.length > 0){
-        if(selected[0].object.material.color.r == 1 && selected[0].object.material.color.b == 1){
+        if(selected[0].object.name == "purple"){
             window.open('4.html', '_blank').focus();
         }
-        else if(selected[0].object.material.color.r == 1){
+        else if(selected[0].object.name == "red"){
             window.open('1.html', '_blank').focus();
         }
-        else if(selected[0].object.material.color.g == 1){
+        else if(selected[0].object.name == "green"){
             window.open('2.html', '_blank').focus();
         }
-        else if(selected[0].object.material.color.b == 1){
+        else if(selected[0].object.name == "blue"){
             window.open('3.html', '_blank').focus();
         }
     }
@@ -91,8 +92,6 @@ function render() {
     raycaster.setFromCamera( mouse, camera );
 
     selected = raycaster.intersectObjects( scene.children );
-
-    console.log(selected);
     
     renderer.render( scene, camera );
 }
@@ -101,7 +100,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 renderer.domElement.addEventListener( 'mousedown', onCanvasMouseDown, false);
 
 const loop = () =>{
-    requestAnimationFrame(loop);
+    //requestAnimationFrame(loop);
     render();
 }
 loop();
