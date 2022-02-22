@@ -1,0 +1,25 @@
+Tworzenie Ciasteczka podobnie do:
+https://pl.mymuesli.com/mixer/
+w trójwymiarze
+
+--------------------------------------
+x ikonki
+x filtry
+x tabela wartosci odżywczych
+x własna etykieta (obracane opakowanie)
+
+---------------------------------------
+Opis gramatury i cena: 
+7 szt. -> 1 opakowanie
+1 szt. -> 27 gram
+cena 1szt. -> 1.50
+
+-------------------------------------
+
+Elementy ciasteczka:
+-> Baza -> Ryż, Maka konopna, Płatki owsiane, Mąka orkiszowa, inna zdefiniowana
+-> Udoskonalenie bazy -> Czekolada, orzechy, inna zdefiniowana
+-> Dodatki -> Maliny, Wiórki kokosowe, inne zdefiniowane
+-> Polewa -> Czekoladowa, waniliowa, inne zdefiniowane
+
+
