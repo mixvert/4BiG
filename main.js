@@ -67,42 +67,6 @@ function onDocumentMouseMove( event ) {
 
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1; 
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
-  raycaster.setFromCamera( mouse, camera );
-  selected = raycaster.intersectObjects( scene.children );
-
-  if(selected.length==0){
-    object1.material.color.setHSL(0,1,.5);
-    object2.material.color.setHSL(.32,1,.5);
-    object3.material.color.setHSL(.65,1,.5);
-    object4.material.color.setHSL(.74,1,.5);
-  }
-  else {
-    if(selected[0].object.name == "purple"){
-        object4.material.color.setHSL(.74,1,.75);
-        object1.material.color.setHSL(0,1,.5);
-        object2.material.color.setHSL(.32,1,.5);
-        object3.material.color.setHSL(.65,1,.5);
-    }
-    else if(selected[0].object.name == "red"){
-        object1.material.color.setHSL(0,1,.75);
-        object2.material.color.setHSL(.32,1,.5);
-        object3.material.color.setHSL(.65,1,.5);
-        object4.material.color.setHSL(.74,1,.5);
-    }
-    else if(selected[0].object.name == "green"){
-        object2.material.color.setHSL(.32,1,.75);
-        object1.material.color.setHSL(0,1,.5);
-        object3.material.color.setHSL(.65,1,.5);
-        object4.material.color.setHSL(.74,1,.5);
-    }
-    else if(selected[0].object.name == "blue"){
-        object3.material.color.setHSL(.65,1,.75);
-        object1.material.color.setHSL(0,1,.5);
-        object2.material.color.setHSL(.32,1,.5);
-        object4.material.color.setHSL(.74,1,.5);
-    }
-  }
 } 
 
 function onCanvasMouseDown( event ){
@@ -131,8 +95,45 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 renderer.domElement.addEventListener( 'mousedown', onCanvasMouseDown, false);
 
 const loop = () =>{
-    // object1.rotation.z+=0.01;
-    // object1.rotation.x+=0.03;
+    object1.rotation.z+=0.01;
+    object1.rotation.x+=0.01;
+
+    raycaster.setFromCamera( mouse, camera );
+    selected = raycaster.intersectObjects( scene.children );
+
+    if(selected.length==0){
+        object1.material.color.setHSL(0,1,.5);
+        object2.material.color.setHSL(.32,1,.5);
+        object3.material.color.setHSL(.65,1,.5);
+        object4.material.color.setHSL(.74,1,.5);
+    }
+    else {
+        if(selected[0].object.name == "purple"){
+            object4.material.color.setHSL(.74,1,.75);
+            object1.material.color.setHSL(0,1,.5);
+            object2.material.color.setHSL(.32,1,.5);
+            object3.material.color.setHSL(.65,1,.5);
+        }
+        else if(selected[0].object.name == "red"){
+            object1.material.color.setHSL(0,1,.75);
+            object2.material.color.setHSL(.32,1,.5);
+            object3.material.color.setHSL(.65,1,.5);
+            object4.material.color.setHSL(.74,1,.5);
+        }
+        else if(selected[0].object.name == "green"){
+            object2.material.color.setHSL(.32,1,.75);
+            object1.material.color.setHSL(0,1,.5);
+            object3.material.color.setHSL(.65,1,.5);
+            object4.material.color.setHSL(.74,1,.5);
+        }
+        else if(selected[0].object.name == "blue"){
+            object3.material.color.setHSL(.65,1,.75);
+            object1.material.color.setHSL(0,1,.5);
+            object2.material.color.setHSL(.32,1,.5);
+            object4.material.color.setHSL(.74,1,.5);
+        }
+    }
+
     requestAnimationFrame(loop);
     render();
 }
